@@ -7,7 +7,7 @@ import {
   Entity,
   Bytes,
   Address,
-  BigInt
+  BigInt,
 } from "@graphprotocol/graph-ts";
 
 export class OwnershipTransferred extends ethereum.Event {
@@ -100,7 +100,7 @@ export class RangeProtocolFactory extends ethereum.SmartContract {
     let result = super.call(
       "UPGRADE_SELECTOR",
       "UPGRADE_SELECTOR():(bytes4)",
-      []
+      [],
     );
 
     return result[0].toBytes();
@@ -110,7 +110,7 @@ export class RangeProtocolFactory extends ethereum.SmartContract {
     let result = super.tryCall(
       "UPGRADE_SELECTOR",
       "UPGRADE_SELECTOR():(bytes4)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -140,8 +140,8 @@ export class RangeProtocolFactory extends ethereum.SmartContract {
       "getVaultAddresses(uint256,uint256):(address[])",
       [
         ethereum.Value.fromUnsignedBigInt(startIdx),
-        ethereum.Value.fromUnsignedBigInt(endIdx)
-      ]
+        ethereum.Value.fromUnsignedBigInt(endIdx),
+      ],
     );
 
     return result[0].toAddressArray();
@@ -149,15 +149,15 @@ export class RangeProtocolFactory extends ethereum.SmartContract {
 
   try_getVaultAddresses(
     startIdx: BigInt,
-    endIdx: BigInt
+    endIdx: BigInt,
   ): ethereum.CallResult<Array<Address>> {
     let result = super.tryCall(
       "getVaultAddresses",
       "getVaultAddresses(uint256,uint256):(address[])",
       [
         ethereum.Value.fromUnsignedBigInt(startIdx),
-        ethereum.Value.fromUnsignedBigInt(endIdx)
-      ]
+        ethereum.Value.fromUnsignedBigInt(endIdx),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();

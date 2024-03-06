@@ -258,7 +258,7 @@ export function feesUpdatedFeeHandler(event: FeeUpdatedEvent): void {
     vault.managingFee = bn(event.params.managingFee);
     vault.performanceFee = bn(event.params.performanceFee);
 
-    const feesUpdated = new FeesUpdated(Bytes.fromHexString(event.address.toHexString() + event.block.number.toHexString()));
+    const feesUpdated = new FeesUpdated(Bytes.fromHexString(event.address.toHexString() + event.block.timestamp.toHexString().slice(2)));
     feesUpdated.performanceFee = bn(event.params.performanceFee);
     feesUpdated.managingFee = bn(event.params.managingFee);
     feesUpdated.timestamp = event.block.timestamp;

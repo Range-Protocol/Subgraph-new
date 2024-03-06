@@ -7,7 +7,7 @@ import {
   Entity,
   Bytes,
   Address,
-  BigInt
+  BigInt,
 } from "@graphprotocol/graph-ts";
 
 export class IiZiSwapPool__burnResult {
@@ -147,7 +147,7 @@ export class IiZiSwapPool__stateResult {
     value4: i32,
     value5: boolean,
     value6: BigInt,
-    value7: BigInt
+    value7: BigInt,
   ) {
     this.value0 = value0;
     this.value1 = value1;
@@ -165,15 +165,15 @@ export class IiZiSwapPool__stateResult {
     map.set("value1", ethereum.Value.fromI32(this.value1));
     map.set(
       "value2",
-      ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(this.value2))
+      ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(this.value2)),
     );
     map.set(
       "value3",
-      ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(this.value3))
+      ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(this.value3)),
     );
     map.set(
       "value4",
-      ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(this.value4))
+      ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(this.value4)),
     );
     map.set("value5", ethereum.Value.fromBoolean(this.value5));
     map.set("value6", ethereum.Value.fromUnsignedBigInt(this.value6));
@@ -272,7 +272,7 @@ export class IiZiSwapPool extends ethereum.SmartContract {
   burn(
     leftPt: i32,
     rightPt: i32,
-    liquidDelta: BigInt
+    liquidDelta: BigInt,
   ): IiZiSwapPool__burnResult {
     let result = super.call(
       "burn",
@@ -280,20 +280,20 @@ export class IiZiSwapPool extends ethereum.SmartContract {
       [
         ethereum.Value.fromI32(leftPt),
         ethereum.Value.fromI32(rightPt),
-        ethereum.Value.fromUnsignedBigInt(liquidDelta)
-      ]
+        ethereum.Value.fromUnsignedBigInt(liquidDelta),
+      ],
     );
 
     return new IiZiSwapPool__burnResult(
       result[0].toBigInt(),
-      result[1].toBigInt()
+      result[1].toBigInt(),
     );
   }
 
   try_burn(
     leftPt: i32,
     rightPt: i32,
-    liquidDelta: BigInt
+    liquidDelta: BigInt,
   ): ethereum.CallResult<IiZiSwapPool__burnResult> {
     let result = super.tryCall(
       "burn",
@@ -301,15 +301,15 @@ export class IiZiSwapPool extends ethereum.SmartContract {
       [
         ethereum.Value.fromI32(leftPt),
         ethereum.Value.fromI32(rightPt),
-        ethereum.Value.fromUnsignedBigInt(liquidDelta)
-      ]
+        ethereum.Value.fromUnsignedBigInt(liquidDelta),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      new IiZiSwapPool__burnResult(value[0].toBigInt(), value[1].toBigInt())
+      new IiZiSwapPool__burnResult(value[0].toBigInt(), value[1].toBigInt()),
     );
   }
 
@@ -318,7 +318,7 @@ export class IiZiSwapPool extends ethereum.SmartContract {
     leftPt: i32,
     rightPt: i32,
     amountXLim: BigInt,
-    amountYLim: BigInt
+    amountYLim: BigInt,
   ): IiZiSwapPool__collectResult {
     let result = super.call(
       "collect",
@@ -328,13 +328,13 @@ export class IiZiSwapPool extends ethereum.SmartContract {
         ethereum.Value.fromI32(leftPt),
         ethereum.Value.fromI32(rightPt),
         ethereum.Value.fromUnsignedBigInt(amountXLim),
-        ethereum.Value.fromUnsignedBigInt(amountYLim)
-      ]
+        ethereum.Value.fromUnsignedBigInt(amountYLim),
+      ],
     );
 
     return new IiZiSwapPool__collectResult(
       result[0].toBigInt(),
-      result[1].toBigInt()
+      result[1].toBigInt(),
     );
   }
 
@@ -343,7 +343,7 @@ export class IiZiSwapPool extends ethereum.SmartContract {
     leftPt: i32,
     rightPt: i32,
     amountXLim: BigInt,
-    amountYLim: BigInt
+    amountYLim: BigInt,
   ): ethereum.CallResult<IiZiSwapPool__collectResult> {
     let result = super.tryCall(
       "collect",
@@ -353,15 +353,15 @@ export class IiZiSwapPool extends ethereum.SmartContract {
         ethereum.Value.fromI32(leftPt),
         ethereum.Value.fromI32(rightPt),
         ethereum.Value.fromUnsignedBigInt(amountXLim),
-        ethereum.Value.fromUnsignedBigInt(amountYLim)
-      ]
+        ethereum.Value.fromUnsignedBigInt(amountYLim),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      new IiZiSwapPool__collectResult(value[0].toBigInt(), value[1].toBigInt())
+      new IiZiSwapPool__collectResult(value[0].toBigInt(), value[1].toBigInt()),
     );
   }
 
@@ -390,7 +390,7 @@ export class IiZiSwapPool extends ethereum.SmartContract {
     let result = super.tryCall(
       "feeScaleX_128",
       "feeScaleX_128():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -409,7 +409,7 @@ export class IiZiSwapPool extends ethereum.SmartContract {
     let result = super.tryCall(
       "feeScaleY_128",
       "feeScaleY_128():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -422,28 +422,28 @@ export class IiZiSwapPool extends ethereum.SmartContract {
     let result = super.call(
       "liquidity",
       "liquidity(bytes32):((uint128,uint256,uint256,uint256,uint256))",
-      [ethereum.Value.fromFixedBytes(liquidityId)]
+      [ethereum.Value.fromFixedBytes(liquidityId)],
     );
 
     return changetype<IiZiSwapPool__liquidityResultValue0Struct>(
-      result[0].toTuple()
+      result[0].toTuple(),
     );
   }
 
   try_liquidity(
-    liquidityId: Bytes
+    liquidityId: Bytes,
   ): ethereum.CallResult<IiZiSwapPool__liquidityResultValue0Struct> {
     let result = super.tryCall(
       "liquidity",
       "liquidity(bytes32):((uint128,uint256,uint256,uint256,uint256))",
-      [ethereum.Value.fromFixedBytes(liquidityId)]
+      [ethereum.Value.fromFixedBytes(liquidityId)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      changetype<IiZiSwapPool__liquidityResultValue0Struct>(value[0].toTuple())
+      changetype<IiZiSwapPool__liquidityResultValue0Struct>(value[0].toTuple()),
     );
   }
 
@@ -452,7 +452,7 @@ export class IiZiSwapPool extends ethereum.SmartContract {
     leftPt: i32,
     rightPt: i32,
     liquidDelta: BigInt,
-    data: Bytes
+    data: Bytes,
   ): IiZiSwapPool__mintResult {
     let result = super.call(
       "mint",
@@ -462,13 +462,13 @@ export class IiZiSwapPool extends ethereum.SmartContract {
         ethereum.Value.fromI32(leftPt),
         ethereum.Value.fromI32(rightPt),
         ethereum.Value.fromUnsignedBigInt(liquidDelta),
-        ethereum.Value.fromBytes(data)
-      ]
+        ethereum.Value.fromBytes(data),
+      ],
     );
 
     return new IiZiSwapPool__mintResult(
       result[0].toBigInt(),
-      result[1].toBigInt()
+      result[1].toBigInt(),
     );
   }
 
@@ -477,7 +477,7 @@ export class IiZiSwapPool extends ethereum.SmartContract {
     leftPt: i32,
     rightPt: i32,
     liquidDelta: BigInt,
-    data: Bytes
+    data: Bytes,
   ): ethereum.CallResult<IiZiSwapPool__mintResult> {
     let result = super.tryCall(
       "mint",
@@ -487,15 +487,15 @@ export class IiZiSwapPool extends ethereum.SmartContract {
         ethereum.Value.fromI32(leftPt),
         ethereum.Value.fromI32(rightPt),
         ethereum.Value.fromUnsignedBigInt(liquidDelta),
-        ethereum.Value.fromBytes(data)
-      ]
+        ethereum.Value.fromBytes(data),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      new IiZiSwapPool__mintResult(value[0].toBigInt(), value[1].toBigInt())
+      new IiZiSwapPool__mintResult(value[0].toBigInt(), value[1].toBigInt()),
     );
   }
 
@@ -518,28 +518,28 @@ export class IiZiSwapPool extends ethereum.SmartContract {
     let result = super.call(
       "points",
       "points(int24):((uint128,int128,uint256,uint256,bool))",
-      [ethereum.Value.fromI32(point)]
+      [ethereum.Value.fromI32(point)],
     );
 
     return changetype<IiZiSwapPool__pointsResultValue0Struct>(
-      result[0].toTuple()
+      result[0].toTuple(),
     );
   }
 
   try_points(
-    point: i32
+    point: i32,
   ): ethereum.CallResult<IiZiSwapPool__pointsResultValue0Struct> {
     let result = super.tryCall(
       "points",
       "points(int24):((uint128,int128,uint256,uint256,bool))",
-      [ethereum.Value.fromI32(point)]
+      [ethereum.Value.fromI32(point)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      changetype<IiZiSwapPool__pointsResultValue0Struct>(value[0].toTuple())
+      changetype<IiZiSwapPool__pointsResultValue0Struct>(value[0].toTuple()),
     );
   }
 
@@ -562,7 +562,7 @@ export class IiZiSwapPool extends ethereum.SmartContract {
     let result = super.call(
       "state",
       "state():(uint160,int24,uint16,uint16,uint16,bool,uint128,uint128)",
-      []
+      [],
     );
 
     return new IiZiSwapPool__stateResult(
@@ -573,7 +573,7 @@ export class IiZiSwapPool extends ethereum.SmartContract {
       result[4].toI32(),
       result[5].toBoolean(),
       result[6].toBigInt(),
-      result[7].toBigInt()
+      result[7].toBigInt(),
     );
   }
 
@@ -581,7 +581,7 @@ export class IiZiSwapPool extends ethereum.SmartContract {
     let result = super.tryCall(
       "state",
       "state():(uint160,int24,uint16,uint16,uint16,bool,uint128,uint128)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -596,8 +596,8 @@ export class IiZiSwapPool extends ethereum.SmartContract {
         value[4].toI32(),
         value[5].toBoolean(),
         value[6].toBigInt(),
-        value[7].toBigInt()
-      )
+        value[7].toBigInt(),
+      ),
     );
   }
 
@@ -605,7 +605,7 @@ export class IiZiSwapPool extends ethereum.SmartContract {
     recipient: Address,
     amount: BigInt,
     lowPt: i32,
-    data: Bytes
+    data: Bytes,
   ): IiZiSwapPool__swapX2YResult {
     let result = super.call(
       "swapX2Y",
@@ -614,13 +614,13 @@ export class IiZiSwapPool extends ethereum.SmartContract {
         ethereum.Value.fromAddress(recipient),
         ethereum.Value.fromUnsignedBigInt(amount),
         ethereum.Value.fromI32(lowPt),
-        ethereum.Value.fromBytes(data)
-      ]
+        ethereum.Value.fromBytes(data),
+      ],
     );
 
     return new IiZiSwapPool__swapX2YResult(
       result[0].toBigInt(),
-      result[1].toBigInt()
+      result[1].toBigInt(),
     );
   }
 
@@ -628,7 +628,7 @@ export class IiZiSwapPool extends ethereum.SmartContract {
     recipient: Address,
     amount: BigInt,
     lowPt: i32,
-    data: Bytes
+    data: Bytes,
   ): ethereum.CallResult<IiZiSwapPool__swapX2YResult> {
     let result = super.tryCall(
       "swapX2Y",
@@ -637,15 +637,15 @@ export class IiZiSwapPool extends ethereum.SmartContract {
         ethereum.Value.fromAddress(recipient),
         ethereum.Value.fromUnsignedBigInt(amount),
         ethereum.Value.fromI32(lowPt),
-        ethereum.Value.fromBytes(data)
-      ]
+        ethereum.Value.fromBytes(data),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      new IiZiSwapPool__swapX2YResult(value[0].toBigInt(), value[1].toBigInt())
+      new IiZiSwapPool__swapX2YResult(value[0].toBigInt(), value[1].toBigInt()),
     );
   }
 
@@ -653,7 +653,7 @@ export class IiZiSwapPool extends ethereum.SmartContract {
     recipient: Address,
     amount: BigInt,
     highPt: i32,
-    data: Bytes
+    data: Bytes,
   ): IiZiSwapPool__swapY2XResult {
     let result = super.call(
       "swapY2X",
@@ -662,13 +662,13 @@ export class IiZiSwapPool extends ethereum.SmartContract {
         ethereum.Value.fromAddress(recipient),
         ethereum.Value.fromUnsignedBigInt(amount),
         ethereum.Value.fromI32(highPt),
-        ethereum.Value.fromBytes(data)
-      ]
+        ethereum.Value.fromBytes(data),
+      ],
     );
 
     return new IiZiSwapPool__swapY2XResult(
       result[0].toBigInt(),
-      result[1].toBigInt()
+      result[1].toBigInt(),
     );
   }
 
@@ -676,7 +676,7 @@ export class IiZiSwapPool extends ethereum.SmartContract {
     recipient: Address,
     amount: BigInt,
     highPt: i32,
-    data: Bytes
+    data: Bytes,
   ): ethereum.CallResult<IiZiSwapPool__swapY2XResult> {
     let result = super.tryCall(
       "swapY2X",
@@ -685,15 +685,15 @@ export class IiZiSwapPool extends ethereum.SmartContract {
         ethereum.Value.fromAddress(recipient),
         ethereum.Value.fromUnsignedBigInt(amount),
         ethereum.Value.fromI32(highPt),
-        ethereum.Value.fromBytes(data)
-      ]
+        ethereum.Value.fromBytes(data),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      new IiZiSwapPool__swapY2XResult(value[0].toBigInt(), value[1].toBigInt())
+      new IiZiSwapPool__swapY2XResult(value[0].toBigInt(), value[1].toBigInt()),
     );
   }
 
@@ -731,7 +731,7 @@ export class IiZiSwapPool extends ethereum.SmartContract {
     let result = super.call(
       "totalFeeXCharged",
       "totalFeeXCharged():(uint256)",
-      []
+      [],
     );
 
     return result[0].toBigInt();
@@ -741,7 +741,7 @@ export class IiZiSwapPool extends ethereum.SmartContract {
     let result = super.tryCall(
       "totalFeeXCharged",
       "totalFeeXCharged():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -754,7 +754,7 @@ export class IiZiSwapPool extends ethereum.SmartContract {
     let result = super.call(
       "totalFeeYCharged",
       "totalFeeYCharged():(uint256)",
-      []
+      [],
     );
 
     return result[0].toBigInt();
@@ -764,7 +764,7 @@ export class IiZiSwapPool extends ethereum.SmartContract {
     let result = super.tryCall(
       "totalFeeYCharged",
       "totalFeeYCharged():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
