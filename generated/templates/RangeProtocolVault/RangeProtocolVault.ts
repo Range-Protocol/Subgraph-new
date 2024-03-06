@@ -7,7 +7,7 @@ import {
   Entity,
   Bytes,
   Address,
-  BigInt,
+  BigInt
 } from "@graphprotocol/graph-ts";
 
 export class AdminChanged extends ethereum.Event {
@@ -693,7 +693,7 @@ export class RangeProtocolVault extends ethereum.SmartContract {
     newRightPoint: i32,
     amountX: BigInt,
     amountY: BigInt,
-    maxAmounts: Array<BigInt>,
+    maxAmounts: Array<BigInt>
   ): RangeProtocolVault__addLiquidityResult {
     let result = super.call(
       "addLiquidity",
@@ -703,13 +703,13 @@ export class RangeProtocolVault extends ethereum.SmartContract {
         ethereum.Value.fromI32(newRightPoint),
         ethereum.Value.fromUnsignedBigInt(amountX),
         ethereum.Value.fromUnsignedBigInt(amountY),
-        ethereum.Value.fromUnsignedBigIntArray(maxAmounts),
-      ],
+        ethereum.Value.fromUnsignedBigIntArray(maxAmounts)
+      ]
     );
 
     return new RangeProtocolVault__addLiquidityResult(
       result[0].toBigInt(),
-      result[1].toBigInt(),
+      result[1].toBigInt()
     );
   }
 
@@ -718,7 +718,7 @@ export class RangeProtocolVault extends ethereum.SmartContract {
     newRightPoint: i32,
     amountX: BigInt,
     amountY: BigInt,
-    maxAmounts: Array<BigInt>,
+    maxAmounts: Array<BigInt>
   ): ethereum.CallResult<RangeProtocolVault__addLiquidityResult> {
     let result = super.tryCall(
       "addLiquidity",
@@ -728,8 +728,8 @@ export class RangeProtocolVault extends ethereum.SmartContract {
         ethereum.Value.fromI32(newRightPoint),
         ethereum.Value.fromUnsignedBigInt(amountX),
         ethereum.Value.fromUnsignedBigInt(amountY),
-        ethereum.Value.fromUnsignedBigIntArray(maxAmounts),
-      ],
+        ethereum.Value.fromUnsignedBigIntArray(maxAmounts)
+      ]
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -738,8 +738,8 @@ export class RangeProtocolVault extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(
       new RangeProtocolVault__addLiquidityResult(
         value[0].toBigInt(),
-        value[1].toBigInt(),
-      ),
+        value[1].toBigInt()
+      )
     );
   }
 
@@ -747,7 +747,7 @@ export class RangeProtocolVault extends ethereum.SmartContract {
     let result = super.call(
       "allowance",
       "allowance(address,address):(uint256)",
-      [ethereum.Value.fromAddress(owner), ethereum.Value.fromAddress(spender)],
+      [ethereum.Value.fromAddress(owner), ethereum.Value.fromAddress(spender)]
     );
 
     return result[0].toBigInt();
@@ -757,7 +757,7 @@ export class RangeProtocolVault extends ethereum.SmartContract {
     let result = super.tryCall(
       "allowance",
       "allowance(address,address):(uint256)",
-      [ethereum.Value.fromAddress(owner), ethereum.Value.fromAddress(spender)],
+      [ethereum.Value.fromAddress(owner), ethereum.Value.fromAddress(spender)]
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -769,7 +769,7 @@ export class RangeProtocolVault extends ethereum.SmartContract {
   approve(spender: Address, amount: BigInt): boolean {
     let result = super.call("approve", "approve(address,uint256):(bool)", [
       ethereum.Value.fromAddress(spender),
-      ethereum.Value.fromUnsignedBigInt(amount),
+      ethereum.Value.fromUnsignedBigInt(amount)
     ]);
 
     return result[0].toBoolean();
@@ -778,7 +778,7 @@ export class RangeProtocolVault extends ethereum.SmartContract {
   try_approve(spender: Address, amount: BigInt): ethereum.CallResult<boolean> {
     let result = super.tryCall("approve", "approve(address,uint256):(bool)", [
       ethereum.Value.fromAddress(spender),
-      ethereum.Value.fromUnsignedBigInt(amount),
+      ethereum.Value.fromUnsignedBigInt(amount)
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -789,7 +789,7 @@ export class RangeProtocolVault extends ethereum.SmartContract {
 
   balanceOf(account: Address): BigInt {
     let result = super.call("balanceOf", "balanceOf(address):(uint256)", [
-      ethereum.Value.fromAddress(account),
+      ethereum.Value.fromAddress(account)
     ]);
 
     return result[0].toBigInt();
@@ -797,7 +797,7 @@ export class RangeProtocolVault extends ethereum.SmartContract {
 
   try_balanceOf(account: Address): ethereum.CallResult<BigInt> {
     let result = super.tryCall("balanceOf", "balanceOf(address):(uint256)", [
-      ethereum.Value.fromAddress(account),
+      ethereum.Value.fromAddress(account)
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -808,34 +808,34 @@ export class RangeProtocolVault extends ethereum.SmartContract {
 
   burn(
     burnAmount: BigInt,
-    minAmounts: Array<BigInt>,
+    minAmounts: Array<BigInt>
   ): RangeProtocolVault__burnResult {
     let result = super.call(
       "burn",
       "burn(uint256,uint256[2]):(uint256,uint256)",
       [
         ethereum.Value.fromUnsignedBigInt(burnAmount),
-        ethereum.Value.fromUnsignedBigIntArray(minAmounts),
-      ],
+        ethereum.Value.fromUnsignedBigIntArray(minAmounts)
+      ]
     );
 
     return new RangeProtocolVault__burnResult(
       result[0].toBigInt(),
-      result[1].toBigInt(),
+      result[1].toBigInt()
     );
   }
 
   try_burn(
     burnAmount: BigInt,
-    minAmounts: Array<BigInt>,
+    minAmounts: Array<BigInt>
   ): ethereum.CallResult<RangeProtocolVault__burnResult> {
     let result = super.tryCall(
       "burn",
       "burn(uint256,uint256[2]):(uint256,uint256)",
       [
         ethereum.Value.fromUnsignedBigInt(burnAmount),
-        ethereum.Value.fromUnsignedBigIntArray(minAmounts),
-      ],
+        ethereum.Value.fromUnsignedBigIntArray(minAmounts)
+      ]
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -844,8 +844,8 @@ export class RangeProtocolVault extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(
       new RangeProtocolVault__burnResult(
         value[0].toBigInt(),
-        value[1].toBigInt(),
-      ),
+        value[1].toBigInt()
+      )
     );
   }
 
@@ -870,8 +870,8 @@ export class RangeProtocolVault extends ethereum.SmartContract {
       "decreaseAllowance(address,uint256):(bool)",
       [
         ethereum.Value.fromAddress(spender),
-        ethereum.Value.fromUnsignedBigInt(subtractedValue),
-      ],
+        ethereum.Value.fromUnsignedBigInt(subtractedValue)
+      ]
     );
 
     return result[0].toBoolean();
@@ -879,15 +879,15 @@ export class RangeProtocolVault extends ethereum.SmartContract {
 
   try_decreaseAllowance(
     spender: Address,
-    subtractedValue: BigInt,
+    subtractedValue: BigInt
   ): ethereum.CallResult<boolean> {
     let result = super.tryCall(
       "decreaseAllowance",
       "decreaseAllowance(address,uint256):(bool)",
       [
         ethereum.Value.fromAddress(spender),
-        ethereum.Value.fromUnsignedBigInt(subtractedValue),
-      ],
+        ethereum.Value.fromUnsignedBigInt(subtractedValue)
+      ]
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -915,20 +915,22 @@ export class RangeProtocolVault extends ethereum.SmartContract {
     let result = super.call(
       "getCurrentFees",
       "getCurrentFees():(uint256,uint256)",
-      [],
+      []
     );
 
     return new RangeProtocolVault__getCurrentFeesResult(
       result[0].toBigInt(),
-      result[1].toBigInt(),
+      result[1].toBigInt()
     );
   }
 
-  try_getCurrentFees(): ethereum.CallResult<RangeProtocolVault__getCurrentFeesResult> {
+  try_getCurrentFees(): ethereum.CallResult<
+    RangeProtocolVault__getCurrentFeesResult
+  > {
     let result = super.tryCall(
       "getCurrentFees",
       "getCurrentFees():(uint256,uint256)",
-      [],
+      []
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -937,42 +939,42 @@ export class RangeProtocolVault extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(
       new RangeProtocolVault__getCurrentFeesResult(
         value[0].toBigInt(),
-        value[1].toBigInt(),
-      ),
+        value[1].toBigInt()
+      )
     );
   }
 
   getMintAmounts(
     amountXMax: BigInt,
-    amountYMax: BigInt,
+    amountYMax: BigInt
   ): RangeProtocolVault__getMintAmountsResult {
     let result = super.call(
       "getMintAmounts",
       "getMintAmounts(uint128,uint128):(uint256,uint256,uint256)",
       [
         ethereum.Value.fromUnsignedBigInt(amountXMax),
-        ethereum.Value.fromUnsignedBigInt(amountYMax),
-      ],
+        ethereum.Value.fromUnsignedBigInt(amountYMax)
+      ]
     );
 
     return new RangeProtocolVault__getMintAmountsResult(
       result[0].toBigInt(),
       result[1].toBigInt(),
-      result[2].toBigInt(),
+      result[2].toBigInt()
     );
   }
 
   try_getMintAmounts(
     amountXMax: BigInt,
-    amountYMax: BigInt,
+    amountYMax: BigInt
   ): ethereum.CallResult<RangeProtocolVault__getMintAmountsResult> {
     let result = super.tryCall(
       "getMintAmounts",
       "getMintAmounts(uint128,uint128):(uint256,uint256,uint256)",
       [
         ethereum.Value.fromUnsignedBigInt(amountXMax),
-        ethereum.Value.fromUnsignedBigInt(amountYMax),
-      ],
+        ethereum.Value.fromUnsignedBigInt(amountYMax)
+      ]
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -982,8 +984,8 @@ export class RangeProtocolVault extends ethereum.SmartContract {
       new RangeProtocolVault__getMintAmountsResult(
         value[0].toBigInt(),
         value[1].toBigInt(),
-        value[2].toBigInt(),
-      ),
+        value[2].toBigInt()
+      )
     );
   }
 
@@ -997,7 +999,7 @@ export class RangeProtocolVault extends ethereum.SmartContract {
     let result = super.tryCall(
       "getPositionID",
       "getPositionID():(bytes32)",
-      [],
+      []
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1010,20 +1012,22 @@ export class RangeProtocolVault extends ethereum.SmartContract {
     let result = super.call(
       "getUnderlyingBalances",
       "getUnderlyingBalances():(uint256,uint256)",
-      [],
+      []
     );
 
     return new RangeProtocolVault__getUnderlyingBalancesResult(
       result[0].toBigInt(),
-      result[1].toBigInt(),
+      result[1].toBigInt()
     );
   }
 
-  try_getUnderlyingBalances(): ethereum.CallResult<RangeProtocolVault__getUnderlyingBalancesResult> {
+  try_getUnderlyingBalances(): ethereum.CallResult<
+    RangeProtocolVault__getUnderlyingBalancesResult
+  > {
     let result = super.tryCall(
       "getUnderlyingBalances",
       "getUnderlyingBalances():(uint256,uint256)",
-      [],
+      []
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1032,33 +1036,35 @@ export class RangeProtocolVault extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(
       new RangeProtocolVault__getUnderlyingBalancesResult(
         value[0].toBigInt(),
-        value[1].toBigInt(),
-      ),
+        value[1].toBigInt()
+      )
     );
   }
 
   getUnderlyingBalancesByShare(
-    shares: BigInt,
+    shares: BigInt
   ): RangeProtocolVault__getUnderlyingBalancesByShareResult {
     let result = super.call(
       "getUnderlyingBalancesByShare",
       "getUnderlyingBalancesByShare(uint256):(uint256,uint256)",
-      [ethereum.Value.fromUnsignedBigInt(shares)],
+      [ethereum.Value.fromUnsignedBigInt(shares)]
     );
 
     return new RangeProtocolVault__getUnderlyingBalancesByShareResult(
       result[0].toBigInt(),
-      result[1].toBigInt(),
+      result[1].toBigInt()
     );
   }
 
   try_getUnderlyingBalancesByShare(
-    shares: BigInt,
-  ): ethereum.CallResult<RangeProtocolVault__getUnderlyingBalancesByShareResult> {
+    shares: BigInt
+  ): ethereum.CallResult<
+    RangeProtocolVault__getUnderlyingBalancesByShareResult
+  > {
     let result = super.tryCall(
       "getUnderlyingBalancesByShare",
       "getUnderlyingBalancesByShare(uint256):(uint256,uint256)",
-      [ethereum.Value.fromUnsignedBigInt(shares)],
+      [ethereum.Value.fromUnsignedBigInt(shares)]
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1067,30 +1073,32 @@ export class RangeProtocolVault extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(
       new RangeProtocolVault__getUnderlyingBalancesByShareResult(
         value[0].toBigInt(),
-        value[1].toBigInt(),
-      ),
+        value[1].toBigInt()
+      )
     );
   }
 
   getUserVaults(
     fromIdx: BigInt,
-    toIdx: BigInt,
+    toIdx: BigInt
   ): Array<RangeProtocolVault__getUserVaultsResultValue0Struct> {
     let result = super.call(
       "getUserVaults",
       "getUserVaults(uint256,uint256):((address,uint256,uint256)[])",
       [
         ethereum.Value.fromUnsignedBigInt(fromIdx),
-        ethereum.Value.fromUnsignedBigInt(toIdx),
-      ],
+        ethereum.Value.fromUnsignedBigInt(toIdx)
+      ]
     );
 
-    return result[0].toTupleArray<RangeProtocolVault__getUserVaultsResultValue0Struct>();
+    return result[0].toTupleArray<
+      RangeProtocolVault__getUserVaultsResultValue0Struct
+    >();
   }
 
   try_getUserVaults(
     fromIdx: BigInt,
-    toIdx: BigInt,
+    toIdx: BigInt
   ): ethereum.CallResult<
     Array<RangeProtocolVault__getUserVaultsResultValue0Struct>
   > {
@@ -1099,15 +1107,17 @@ export class RangeProtocolVault extends ethereum.SmartContract {
       "getUserVaults(uint256,uint256):((address,uint256,uint256)[])",
       [
         ethereum.Value.fromUnsignedBigInt(fromIdx),
-        ethereum.Value.fromUnsignedBigInt(toIdx),
-      ],
+        ethereum.Value.fromUnsignedBigInt(toIdx)
+      ]
     );
     if (result.reverted) {
       return new ethereum.CallResult();
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      value[0].toTupleArray<RangeProtocolVault__getUserVaultsResultValue0Struct>(),
+      value[0].toTupleArray<
+        RangeProtocolVault__getUserVaultsResultValue0Struct
+      >()
     );
   }
 
@@ -1132,8 +1142,8 @@ export class RangeProtocolVault extends ethereum.SmartContract {
       "increaseAllowance(address,uint256):(bool)",
       [
         ethereum.Value.fromAddress(spender),
-        ethereum.Value.fromUnsignedBigInt(addedValue),
-      ],
+        ethereum.Value.fromUnsignedBigInt(addedValue)
+      ]
     );
 
     return result[0].toBoolean();
@@ -1141,15 +1151,15 @@ export class RangeProtocolVault extends ethereum.SmartContract {
 
   try_increaseAllowance(
     spender: Address,
-    addedValue: BigInt,
+    addedValue: BigInt
   ): ethereum.CallResult<boolean> {
     let result = super.tryCall(
       "increaseAllowance",
       "increaseAllowance(address,uint256):(bool)",
       [
         ethereum.Value.fromAddress(spender),
-        ethereum.Value.fromUnsignedBigInt(addedValue),
-      ],
+        ethereum.Value.fromUnsignedBigInt(addedValue)
+      ]
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1192,7 +1202,7 @@ export class RangeProtocolVault extends ethereum.SmartContract {
     let result = super.call(
       "managerBalanceX",
       "managerBalanceX():(uint256)",
-      [],
+      []
     );
 
     return result[0].toBigInt();
@@ -1202,7 +1212,7 @@ export class RangeProtocolVault extends ethereum.SmartContract {
     let result = super.tryCall(
       "managerBalanceX",
       "managerBalanceX():(uint256)",
-      [],
+      []
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1215,7 +1225,7 @@ export class RangeProtocolVault extends ethereum.SmartContract {
     let result = super.call(
       "managerBalanceY",
       "managerBalanceY():(uint256)",
-      [],
+      []
     );
 
     return result[0].toBigInt();
@@ -1225,7 +1235,7 @@ export class RangeProtocolVault extends ethereum.SmartContract {
     let result = super.tryCall(
       "managerBalanceY",
       "managerBalanceY():(uint256)",
-      [],
+      []
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1251,34 +1261,34 @@ export class RangeProtocolVault extends ethereum.SmartContract {
 
   mint(
     mintAmount: BigInt,
-    maxAmounts: Array<BigInt>,
+    maxAmounts: Array<BigInt>
   ): RangeProtocolVault__mintResult {
     let result = super.call(
       "mint",
       "mint(uint256,uint256[2]):(uint256,uint256)",
       [
         ethereum.Value.fromUnsignedBigInt(mintAmount),
-        ethereum.Value.fromUnsignedBigIntArray(maxAmounts),
-      ],
+        ethereum.Value.fromUnsignedBigIntArray(maxAmounts)
+      ]
     );
 
     return new RangeProtocolVault__mintResult(
       result[0].toBigInt(),
-      result[1].toBigInt(),
+      result[1].toBigInt()
     );
   }
 
   try_mint(
     mintAmount: BigInt,
-    maxAmounts: Array<BigInt>,
+    maxAmounts: Array<BigInt>
   ): ethereum.CallResult<RangeProtocolVault__mintResult> {
     let result = super.tryCall(
       "mint",
       "mint(uint256,uint256[2]):(uint256,uint256)",
       [
         ethereum.Value.fromUnsignedBigInt(mintAmount),
-        ethereum.Value.fromUnsignedBigIntArray(maxAmounts),
-      ],
+        ethereum.Value.fromUnsignedBigIntArray(maxAmounts)
+      ]
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1287,8 +1297,8 @@ export class RangeProtocolVault extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(
       new RangeProtocolVault__mintResult(
         value[0].toBigInt(),
-        value[1].toBigInt(),
-      ),
+        value[1].toBigInt()
+      )
     );
   }
 
@@ -1347,7 +1357,7 @@ export class RangeProtocolVault extends ethereum.SmartContract {
     let result = super.tryCall(
       "performanceFee",
       "performanceFee():(uint16)",
-      [],
+      []
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1396,7 +1406,7 @@ export class RangeProtocolVault extends ethereum.SmartContract {
     let result = super.tryCall(
       "proxiableUUID",
       "proxiableUUID():(bytes32)",
-      [],
+      []
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1424,7 +1434,7 @@ export class RangeProtocolVault extends ethereum.SmartContract {
     zeroForOne: boolean,
     swapAmount: BigInt,
     pointLimit: i32,
-    minAmountIn: BigInt,
+    minAmountIn: BigInt
   ): RangeProtocolVault__swapResult {
     let result = super.call(
       "swap",
@@ -1433,13 +1443,13 @@ export class RangeProtocolVault extends ethereum.SmartContract {
         ethereum.Value.fromBoolean(zeroForOne),
         ethereum.Value.fromUnsignedBigInt(swapAmount),
         ethereum.Value.fromI32(pointLimit),
-        ethereum.Value.fromUnsignedBigInt(minAmountIn),
-      ],
+        ethereum.Value.fromUnsignedBigInt(minAmountIn)
+      ]
     );
 
     return new RangeProtocolVault__swapResult(
       result[0].toBigInt(),
-      result[1].toBigInt(),
+      result[1].toBigInt()
     );
   }
 
@@ -1447,7 +1457,7 @@ export class RangeProtocolVault extends ethereum.SmartContract {
     zeroForOne: boolean,
     swapAmount: BigInt,
     pointLimit: i32,
-    minAmountIn: BigInt,
+    minAmountIn: BigInt
   ): ethereum.CallResult<RangeProtocolVault__swapResult> {
     let result = super.tryCall(
       "swap",
@@ -1456,8 +1466,8 @@ export class RangeProtocolVault extends ethereum.SmartContract {
         ethereum.Value.fromBoolean(zeroForOne),
         ethereum.Value.fromUnsignedBigInt(swapAmount),
         ethereum.Value.fromI32(pointLimit),
-        ethereum.Value.fromUnsignedBigInt(minAmountIn),
-      ],
+        ethereum.Value.fromUnsignedBigInt(minAmountIn)
+      ]
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1466,8 +1476,8 @@ export class RangeProtocolVault extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(
       new RangeProtocolVault__swapResult(
         value[0].toBigInt(),
-        value[1].toBigInt(),
-      ),
+        value[1].toBigInt()
+      )
     );
   }
 
@@ -1534,7 +1544,7 @@ export class RangeProtocolVault extends ethereum.SmartContract {
   transfer(to: Address, amount: BigInt): boolean {
     let result = super.call("transfer", "transfer(address,uint256):(bool)", [
       ethereum.Value.fromAddress(to),
-      ethereum.Value.fromUnsignedBigInt(amount),
+      ethereum.Value.fromUnsignedBigInt(amount)
     ]);
 
     return result[0].toBoolean();
@@ -1543,7 +1553,7 @@ export class RangeProtocolVault extends ethereum.SmartContract {
   try_transfer(to: Address, amount: BigInt): ethereum.CallResult<boolean> {
     let result = super.tryCall("transfer", "transfer(address,uint256):(bool)", [
       ethereum.Value.fromAddress(to),
-      ethereum.Value.fromUnsignedBigInt(amount),
+      ethereum.Value.fromUnsignedBigInt(amount)
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1559,8 +1569,8 @@ export class RangeProtocolVault extends ethereum.SmartContract {
       [
         ethereum.Value.fromAddress(from),
         ethereum.Value.fromAddress(to),
-        ethereum.Value.fromUnsignedBigInt(amount),
-      ],
+        ethereum.Value.fromUnsignedBigInt(amount)
+      ]
     );
 
     return result[0].toBoolean();
@@ -1569,7 +1579,7 @@ export class RangeProtocolVault extends ethereum.SmartContract {
   try_transferFrom(
     from: Address,
     to: Address,
-    amount: BigInt,
+    amount: BigInt
   ): ethereum.CallResult<boolean> {
     let result = super.tryCall(
       "transferFrom",
@@ -1577,8 +1587,8 @@ export class RangeProtocolVault extends ethereum.SmartContract {
       [
         ethereum.Value.fromAddress(from),
         ethereum.Value.fromAddress(to),
-        ethereum.Value.fromUnsignedBigInt(amount),
-      ],
+        ethereum.Value.fromUnsignedBigInt(amount)
+      ]
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1606,21 +1616,21 @@ export class RangeProtocolVault extends ethereum.SmartContract {
     let result = super.call(
       "userVaults",
       "userVaults(address):((bool,uint256,uint256))",
-      [ethereum.Value.fromAddress(user)],
+      [ethereum.Value.fromAddress(user)]
     );
 
     return changetype<RangeProtocolVault__userVaultsResultValue0Struct>(
-      result[0].toTuple(),
+      result[0].toTuple()
     );
   }
 
   try_userVaults(
-    user: Address,
+    user: Address
   ): ethereum.CallResult<RangeProtocolVault__userVaultsResultValue0Struct> {
     let result = super.tryCall(
       "userVaults",
       "userVaults(address):((bool,uint256,uint256))",
-      [ethereum.Value.fromAddress(user)],
+      [ethereum.Value.fromAddress(user)]
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1628,14 +1638,14 @@ export class RangeProtocolVault extends ethereum.SmartContract {
     let value = result.value;
     return ethereum.CallResult.fromValue(
       changetype<RangeProtocolVault__userVaultsResultValue0Struct>(
-        value[0].toTuple(),
-      ),
+        value[0].toTuple()
+      )
     );
   }
 
   users(idx: BigInt): Address {
     let result = super.call("users", "users(uint256):(address)", [
-      ethereum.Value.fromUnsignedBigInt(idx),
+      ethereum.Value.fromUnsignedBigInt(idx)
     ]);
 
     return result[0].toAddress();
@@ -1643,7 +1653,7 @@ export class RangeProtocolVault extends ethereum.SmartContract {
 
   try_users(idx: BigInt): ethereum.CallResult<Address> {
     let result = super.tryCall("users", "users(uint256):(address)", [
-      ethereum.Value.fromUnsignedBigInt(idx),
+      ethereum.Value.fromUnsignedBigInt(idx)
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
