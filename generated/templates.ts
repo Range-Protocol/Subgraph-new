@@ -3,7 +3,7 @@
 import {
   Address,
   DataSourceTemplate,
-  DataSourceContext,
+  DataSourceContext
 } from "@graphprotocol/graph-ts";
 
 export class RangeProtocolVault extends DataSourceTemplate {
@@ -15,7 +15,7 @@ export class RangeProtocolVault extends DataSourceTemplate {
     DataSourceTemplate.createWithContext(
       "RangeProtocolVault",
       [address.toHex()],
-      context,
+      context
     );
   }
 }
