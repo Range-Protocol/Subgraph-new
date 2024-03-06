@@ -1,0 +1,121 @@
+#Vault entity contains properties vault properties being tracked.
+type Vault @entity {
+  id: Bytes!
+  name: String!
+  pool: Bytes!
+  tokenX: Bytes!
+  tokenY: Bytes!
+  tokenXName: String!
+  tokenYName: String!
+  isPassive: Boolean!
+  tag: String!
+  liquidity: BigInt!
+  totalSupply: BigInt!
+  manager: Bytes!
+  managingFee: BigInt!
+  performanceFee: BigInt!
+  managerBalanceX: BigInt!
+  managerBalanceY: BigInt!
+  balance0: BigInt!
+  balance1: BigInt!
+  totalFeesEarned0: BigInt!
+  totalFeesEarned1: BigInt!
+  firstMintAtBlock: BigInt!
+  inThePosition: Boolean!
+  currentPosition: Position
+  currentPositionIdInVault: Bytes
+  positionCount: BigInt!
+  feeEarnedEventCount: BigInt!
+  uniqueKey: BigInt!
+  positions: [Position!]! @derivedFrom(field: "vault")
+  feeEarnedEvents: [FeeEarned!]! @derivedFrom(field: "vault")
+  mints: [Mint!]! @derivedFrom(field: "vault")
+  burns: [Burn!]! @derivedFrom(field: "vault")
+  swaps: [Swap!]! @derivedFrom(field: "vault")
+  lastUserIndex: BigInt!
+  userBalances: [UserVaultBalance!]! @derivedFrom(field: "vault")
+}
+
+type Position @entity {
+  id: String!
+  tokenXAmount: BigInt!
+  tokenYAmount: BigInt!
+  tokenXWithdrawn: BigInt!
+  tokenYWithdrawn: BigInt!
+  priceSqrtAtOpening: BigInt!
+  priceSqrtAtClosing: BigInt!
+  lowerTick: BigInt!
+  upperTick: BigInt!
+  feesEarned0: BigInt!
+  feesEarned1: BigInt!
+  vault: Vault!
+  openedAtTimestamp: BigInt!
+  closedAtTimestamp: BigInt!
+  openedATBlock: BigInt!
+  closedAtBlock: BigInt!
+}
+
+type FeeEarned @entity {
+  id: String!
+  amountX: BigInt
+  amountY: BigInt
+  timestamp: BigInt!
+  vault: Vault!
+}
+
+# User entity represents users balance across all vaults.
+type User @entity {
+  id: Bytes!
+  vaultBalances: [UserVaultBalance!]! @derivedFrom(field: "user")
+}
+
+# UserVaultBalance entity contains user's balance in a given vault.
+type UserVaultBalance @entity {
+  id: Bytes!
+  address: Bytes!
+  balance: BigInt!
+  tokenX: BigInt!
+  tokenY: BigInt!
+  userIndex: BigInt!
+  user: User!
+  vault: Vault!
+}
+
+# Swap entity to track swap records
+type Swap @entity {
+  id: String!
+  zeroForOne: Boolean!
+  amountX: BigInt!
+  amountY: BigInt!
+  timestamp: BigInt!
+  vault: Vault!
+}
+
+type Mint @entity {
+  id: String!
+  receiver: Bytes!
+  mintAmount: BigInt!
+  amountXIn: BigInt!
+  amountYIn: BigInt!
+  timestamp: BigInt!
+  txHash: Bytes!
+  vault: Vault!
+}
+
+type Burn @entity {
+  id: String!
+  receiver: Bytes!
+  burnAmount: BigInt!
+  amountXOut: BigInt!
+  amountYOut: BigInt!
+  timestamp: BigInt!
+  txHash: Bytes!
+  vault: Vault!
+}
+
+type FeesUpdated @entity {
+  id: Bytes!
+  performanceFee: BigInt!
+  managingFee: BigInt!
+  timestamp: BigInt!
+}
